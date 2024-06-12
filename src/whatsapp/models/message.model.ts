@@ -63,7 +63,7 @@ export class MessageRaw {
   message?: object;
   messageTimestamp?: number | Long.Long;
   owner: string;
-  source?: 'android' | 'web' | 'ios';
+  source?: 'android' | 'unknown' | 'web' | 'ios' | 'desktop';
 }
 
 const messageSchema = new Schema<MessageRaw>({
