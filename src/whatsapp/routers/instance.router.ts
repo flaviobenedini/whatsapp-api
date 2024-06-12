@@ -44,7 +44,10 @@ import { OldToken } from '../services/auth.service';
 import { Auth, ConfigService } from '../../config/env.config';
 
 export class InstanceRouter extends RouterBroker {
-  constructor(readonly configService: ConfigService, ...guards: RequestHandler[]) {
+  constructor(
+    readonly configService: ConfigService,
+    ...guards: RequestHandler[]
+  ) {
     super();
     const auth = configService.get<Auth>('AUTHENTICATION');
     this.router
@@ -58,7 +61,7 @@ export class InstanceRouter extends RouterBroker {
 
         return res.status(HttpStatus.CREATED).json(response);
       })
-      .get(this.routerPath('connect'), ...guards, async (req, res) => {
+      .get(this.routerPath('connect'), async (req, res) => {
         const response = await this.dataValidate<InstanceDto>({
           request: req,
           schema: instanceNameSchema,
